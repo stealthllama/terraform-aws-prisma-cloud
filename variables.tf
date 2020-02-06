@@ -20,10 +20,19 @@
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 variable "region" {
-  default = "us-west-1"
+  default     = "us-west-1"
+  description = "The AWS region in which to deploy"
+  type        = string
 }
 
 variable "role_name" {
-  default = "PrismaCloudReadWriteRole"
+  default     = "PrismaCloudReadWriteRole"
+  description = "The name of the AWS IAM role"
+  type        = string
 }
 
+variable "read_write" {
+  default     = false
+  description = "If set to true, enable read-write access"
+  type        = bool
+}

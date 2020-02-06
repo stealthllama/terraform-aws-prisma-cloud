@@ -78,6 +78,7 @@ resource "aws_iam_role_policy" "prismacloud_iam_readonly_policy" {
           "elasticfilesystem:DescribeTags",
           "glacier:GetVaultLock",
           "glacier:ListTagsForVault",
+          "glue:GetSecurityConfigurations",
           "logs:GetLogEvents",
           "mq:listBrokers",
           "mq:describeBroker",
@@ -87,7 +88,9 @@ resource "aws_iam_role_policy" "prismacloud_iam_readonly_policy" {
           "ssm:ListTagsForResource",
           "sqs:SendMessage",
           "elasticmapreduce:ListSecurityConfigurations",
-          "sns:listSubscriptions"
+          "sns:listSubscriptions",
+          "wafv2:ListResourcesForWebACL",
+          "wafv2:ListWebACLs"
         ],
         "Effect": "Allow",
         "Resource": "*"
@@ -97,8 +100,10 @@ resource "aws_iam_role_policy" "prismacloud_iam_readonly_policy" {
   EOF
 }
 
-# Create and attach the Remediation inline policy
+# Create and attach the Remediation inline policy if var.readwrite = true
 resource "aws_iam_role_policy" "prismacloud_iam_remediation_policy" {
+  count = var.readwrite ? 1 : 0
+
   name   = "PrismaCloud-IAM-Remediation-Policy"
   role   = aws_iam_role.prismacloud_role.id
   policy = <<-EOF
