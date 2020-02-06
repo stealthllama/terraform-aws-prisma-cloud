@@ -102,7 +102,7 @@ resource "aws_iam_role_policy" "prismacloud_iam_readonly_policy" {
 
 # Create and attach the Remediation inline policy if var.readwrite = true
 resource "aws_iam_role_policy" "prismacloud_iam_remediation_policy" {
-  count = var.readwrite ? 1 : 0
+  count = var.read_write ? 1 : 0
 
   name   = "PrismaCloud-IAM-Remediation-Policy"
   role   = aws_iam_role.prismacloud_role.id
