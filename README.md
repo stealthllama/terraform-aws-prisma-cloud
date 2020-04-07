@@ -1,3 +1,3 @@
-# terraform-aws-prisma-cloud
+# terraform-aws-prismacloud
 This module is used to create an AWS IAM role and associated policies for use with the Palo Alto Networks Prisma Cloud service.
 

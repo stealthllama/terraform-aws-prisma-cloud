@@ -23,6 +23,9 @@ provider "aws" {
   region = var.region
 }
 
+# Get the current account_id
+data "aws_caller_identity" "current" {}
+
 # Generate a random ExternalID for Prisma Cloud
 resource "random_string" "external_id" {
   length  = 32

@@ -19,6 +19,12 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+output "account_id" {
+  value       = data.aws_caller_identity.current.account_id
+  description = "The AWS account ID"
+}
+
 output "role_name" {
   value       = aws_iam_role.prismacloud_role.name
   description = "The name of the Prisma Cloud role"
@@ -26,10 +32,10 @@ output "role_name" {
 
 output "role_arn" {
   value       = aws_iam_role.prismacloud_role.arn
-  description = "Role ARN to configure within PrismaCloud Account Setup"
+  description = "The Role ARN to configure within PrismaCloud Account Setup"
 }
 
-output "role_external_id" {
+output "external_id" {
   value       = random_string.external_id.result
   description = "The ExternalID to configure within PrismaCloud Account Setup"
 }
